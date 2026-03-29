@@ -113,6 +113,7 @@ require("lazy").setup({
             "markdown", "markdown_inline",
             "json", "yaml",
             "bash", "fish",
+            "latex",
         },
         auto_install = true,
         highlight = { enable = true },
@@ -155,6 +156,8 @@ require("lazy").setup({
                 "html",          -- HTML
                 "cssls",         -- CSS
                 "lua_ls",        -- Lua (nvim config)
+                "omnisharp",
+                "texlab"
             },
             automatic_installation = true,
         })
@@ -170,7 +173,7 @@ require("lazy").setup({
             capabilities = vim.lsp.protocol.make_client_capabilities(),
         })
 
-        vim.lsp.enable({ "pyright", "clangd", "ts_ls", "html", "cssls", "lua_ls" })
+        vim.lsp.enable({ "pyright", "clangd", "ts_ls", "html", "cssls", "lua_ls", "omnisharp", "texlab" })
 
         -- Skróty LSP
         vim.api.nvim_create_autocmd("LspAttach", {
@@ -282,6 +285,15 @@ require("lazy").setup({
         local cmp_autopairs = require("nvim-autopairs.completion.cmp")
         local cmp = require("cmp")
         cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+    end,
+},
+-- LaTeX
+{
+    "lervag/vimtex",
+    ft = { "tex" },
+    config = function()
+        vim.g.vimtex_view_method = "zathura"
+        vim.g.vimtex_compiler_method = "latexmk"
     end,
 },
 }, {
