@@ -20,7 +20,7 @@ map("v", "<", "<gv", { desc = "Wcięcie w lewo" })
 map("v", ">", ">gv", { desc = "Wcięcie w prawo" })
 
 -- Schowek systemowy
-map({"n", "v"}, "<leader>y", '"+y', { desc = "Kopiuj do schowka" })
+map({ "n", "v" }, "<leader>y", '"+y', { desc = "Kopiuj do schowka" })
 map("n", "<leader>p", '"+p', { desc = "Wklej ze schowka" })
 
 -- Czyszczenie podświetlenia wyszukiwania
@@ -29,3 +29,7 @@ map("n", "<Esc>", ":noh<CR>", { desc = "Wyczyść podświetlenie" })
 -- Podział okien
 map("n", "<leader>sv", ":vsplit<CR>", { desc = "Podziel pionowo" })
 map("n", "<leader>sh", ":split<CR>", { desc = "Podziel poziomo" })
+
+map({ "n", "v" }, "<leader>cf", function()
+  require("conform").format({ async = true, lsp_fallback = true })
+end, { desc = "Formatuj kod" })
